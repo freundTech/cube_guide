@@ -1,0 +1,71 @@
+\documentclass[a4paper,11p]{article}
+\usepackage{geometry}
+\usepackage[english, german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{syntonly}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+%\syntaxonly
+\geometry{margin=1in}
+
+\newcommand{\bigimage}[1]{\includegraphics[width=3cm]{images/#1}}
+\newcommand{\smallimage}[1]{\includegraphics[width=2cm]{images/#1}}
+\newcommand{\alg}[1]{
+	\renewcommand*{\do}[1]{\includegraphics[width=1cm]{images/##1}\hspace{0.2cm}}
+	\docsvlist{#1}
+}
+
+\begin{document}
+\pagestyle{plain}
+\date{}
+\title{Rubik's Cube Algorithmen}
+\maketitle
+\section{Erste Ebene}
+\subsection{Kreuz}
+\bigimage{cross}
+\begin{enumerate}
+	\item \smallimage{cross_case1} 
+	\alg{F,F}
+	\item \smallimage{cross_case2}
+	\alg{D,M,D',M'}
+	\item \smallimage{cross_case3}
+	\alg{R',D',R}, dann Fall 1 oder 2
+\end{enumerate}
+
+\subsection{Ecken der ersten Ebene}
+\bigimage{first_layer}
+\begin{enumerate}
+	\item \smallimage{first_layer_case1}
+	\alg{D',R',D,R}
+	\item \smallimage{first_layer_case2}
+	\alg{D,F,D',F'}
+	\item \smallimage{first_layer_case3}
+	\alg{D',R',D,D,R}, dann Fall 1
+\end{enumerate}
+
+\section{Zweite Ebene}
+\bigimage{second_layer}
+Hier Würfel umdrehen
+\begin{enumerate}
+	\item \smallimage{second_layer_case1}
+	\alg{U,R,U,R',U',F',U',F}
+	\item \smallimage{second_layer_case2}
+	\alg{U',L',U',L,U,F,U,F'}
+\end{enumerate}
+
+\section{Letzte Ebene}
+\bigimage{solved}
+\subsection{Ecken tauschen}
+\smallimage{last_layer_swap_corners}
+\alg{F,R,U',R',U',R,U,R',F',U,U}
+\subsection{Ecken drehen}
+\smallimage{last_layer_rotate_corners}
+\alg{R',D,R,D'} bis Ecke stimmt. Anschließend mit \alg{U} nächste Ecke an die Stelle drehen und Algorithmus weiter ausführen
+\subsection{Kanten tauschen}
+\smallimage{last_layer_swap_edges}
+\alg{M',U,M,U,U,M',U,M}
+\subsection{Kanten drehen}
+\smallimage{last_layer_rotate_edges}
+\alg{R,E} bis Kante stimmt. Anschließend mit \alg{U} nächste Kante an die Stelle drehen und Algorithmus weiter ausführen
+\end{document}
